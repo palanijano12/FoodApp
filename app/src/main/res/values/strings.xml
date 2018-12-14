@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FoodApp</string>
+    <string name="title">F&amp;B</string>
+    <string name="tab1">Combos</string>
+    <string name="tab2">Drinks</string>
+    <string name="tab3">Crepes</string>
+</resources>
