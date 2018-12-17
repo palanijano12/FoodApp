@@ -3,6 +3,8 @@
     <color name="colorPrimary">#1a1a1a</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="appBg">#262626</color>
-    <color name="tab_bg">#0d0d0d</color>
+    <color name="appBg">#737373</color>
+    <color name="tab_bg">#262626</color>
+    <color name="list_item_bg">#1a1a1a</color>
+    <color name="item_border_color">#cccccc</color>
 </resources>

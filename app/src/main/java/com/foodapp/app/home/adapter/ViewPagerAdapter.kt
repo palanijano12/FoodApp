@@ -1,4 +1,4 @@
-package com.foodapp.app.home.viewpageradapter
+package com.foodapp.app.home.adapter
 
 import android.content.Context
 import android.support.v4.app.Fragment

@@ -3,7 +3,7 @@ package com.foodapp.app.home
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.foodapp.app.R
-import com.foodapp.app.home.viewpageradapter.ViewPagerAdapter
+import com.foodapp.app.home.adapter.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 
