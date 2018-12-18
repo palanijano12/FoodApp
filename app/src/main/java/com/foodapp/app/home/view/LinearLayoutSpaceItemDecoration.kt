@@ -1,4 +1,4 @@
-package com.foodapp.app.home
+package com.foodapp.app.home.view
 
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView

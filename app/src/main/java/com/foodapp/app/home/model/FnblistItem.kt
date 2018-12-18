@@ -19,7 +19,7 @@ data class FnblistItem(@SerializedName("VegClass")
                        @SerializedName("PriceInCents")
                        val priceInCents: String = "",
                        @SerializedName("subitems")
-                       val subitems: List<SubitemsItem>?,
+                       val subitems: ArrayList<SubitemsItem>?,
                        @SerializedName("SevenStarExperience")
                        val sevenStarExperience: String = "",
                        @SerializedName("TabName")

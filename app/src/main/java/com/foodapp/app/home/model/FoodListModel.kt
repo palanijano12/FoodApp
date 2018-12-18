@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class FoodListModel(@SerializedName("Currency")
                          val currency: String = "",
                          @SerializedName("FoodList")
-                         val foodList: List<FoodListItem>?,
+                         val foodList: ArrayList<FoodListItem>?,
                          @SerializedName("status")
                          val status: Status)

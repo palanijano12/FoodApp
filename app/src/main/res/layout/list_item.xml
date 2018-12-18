@@ -103,16 +103,20 @@
                 android:layout_weight="70"
                 android:text="AED 16"
                 android:paddingLeft="15dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
                 android:paddingBottom="10dp"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"/>
+                android:textSize="16sp"/>
             <ImageView
                 android:id="@+id/minus_img"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:src="@drawable/minus_image"
-                android:gravity="center_horizontal"
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"/>
             <TextView
@@ -121,7 +125,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:text="1"
-                android:gravity="center_horizontal"
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"/>
             <ImageView
@@ -130,7 +136,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:src="@drawable/add_image"
-                android:gravity="center_horizontal"
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"/>
         </LinearLayout>
