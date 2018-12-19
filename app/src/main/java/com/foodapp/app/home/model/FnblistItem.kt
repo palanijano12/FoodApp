@@ -27,4 +27,5 @@ data class FnblistItem(@SerializedName("VegClass")
                        @SerializedName("SubItemCount")
                        val subItemCount: Int = 0,
                        @SerializedName("VistaFoodItemId")
-                       val vistaFoodItemId: String = "")
+                       val vistaFoodItemId: String = "",
+                       var priceList: ArrayList<Int>?)

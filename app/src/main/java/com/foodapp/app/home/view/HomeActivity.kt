@@ -2,6 +2,10 @@ package com.foodapp.app.home.view
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -9,12 +13,14 @@ import com.foodapp.app.R
 import com.foodapp.app.home.model.FoodListModel
 import com.foodapp.app.home.view.adapter.ViewPagerAdapter
 import com.foodapp.app.home.viewmodel.HomeVM
+import com.foodapp.app.home.webservice.PriceUpdateListener
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 
-class HomeActivity : AppCompatActivity(){
+class HomeActivity : AppCompatActivity(), PriceUpdateListener{
     lateinit var homeVM: HomeVM
+    var price: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,5 +43,27 @@ class HomeActivity : AppCompatActivity(){
                 tabs_main.setupWithViewPager(viewpager_main)
             }
         })
+        total_amount.text = "AED "+price+" ^"
+        registerReceiver(broadcastPriceAdd, IntentFilter("price_receiver"))
     }
+
+    override fun updatePrice(price: Int) {
+
+    }
+
+    val broadcastPriceAdd = object : BroadcastReceiver(){
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            if(p1 != null){
+                price = p1.getIntExtra("price", -1)
+                total_amount.text = "AED "+price+" ^"
+            }
+        }
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(broadcastPriceAdd)
+    }
+
 }
