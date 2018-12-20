@@ -68,12 +68,22 @@
             android:id="@+id/pay_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PAY >"
-            android:layout_margin="10dp"
+            android:layout_toLeftOf="@+id/right_arrow"
+            android:text="PAY"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="01dp"
             android:gravity="right"
             android:textSize="18sp"
-            android:layout_alignParentRight="true"
             android:textColor="@color/colorPrimaryDark"/>
+        <ImageView
+            android:id="@+id/right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_front"/>
 
     </RelativeLayout>
 

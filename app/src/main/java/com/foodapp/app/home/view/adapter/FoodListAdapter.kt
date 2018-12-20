@@ -7,12 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.foodapp.app.R
 import com.foodapp.app.home.model.FnblistItem
+import com.foodapp.app.home.webservice.PriceReduceListener
 import com.foodapp.app.home.webservice.PriceUpdateListener
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class FoodListAdapter(val items : ArrayList<FnblistItem>, val context: Context, val priceListener: PriceUpdateListener) : RecyclerView.Adapter<FoodViewHolder>() {
+class FoodListAdapter(val items : ArrayList<FnblistItem>, val context: Context, val priceListener: PriceUpdateListener, val priceReduceListener: PriceReduceListener) : RecyclerView.Adapter<FoodViewHolder>() {
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         var total: Int = 0
         if(items.get(position).subItemCount == 0){
@@ -40,8 +44,12 @@ class FoodListAdapter(val items : ArrayList<FnblistItem>, val context: Context, 
         }
 
         holder.foodName.text = items.get(position).name.toUpperCase()
+        val requestOption = RequestOptions()
+                .centerCrop()
+                .transforms(CenterCrop(), RoundedCorners(30))
         Glide.with(context)
                 .load(items.get(position).imageUrl)
+                .apply(requestOption)
                 .into(holder.foodImage)
         holder.totalCount.text = "0"
 
@@ -74,8 +82,7 @@ class FoodListAdapter(val items : ArrayList<FnblistItem>, val context: Context, 
                 val amt = str.toFloat();
                 Log.e("Adapter", ""+amt.toInt())
                 val price: Int = amt.toInt()
-                val totalPrice = price * add
-                priceListener.updatePrice(totalPrice)
+                priceListener.updatePrice(price)
                 holder.totalCount.text = add.toString()
             }
         }
@@ -87,8 +94,7 @@ class FoodListAdapter(val items : ArrayList<FnblistItem>, val context: Context, 
                 val amt = str.toFloat();
                 Log.e("Adapter", ""+amt.toInt())
                 val price: Int = amt.toInt()
-                val totalPrice = price * add
-                priceListener.updatePrice(totalPrice)
+                priceReduceListener.updateReducedPrice(price)
                 holder.totalCount.text = add.toString()
             }
 
@@ -128,13 +134,4 @@ class FoodViewHolder (view: View, val items : ArrayList<FnblistItem>) : Recycler
             segment3.setBackgroundResource(R.drawable.segment_bg)
         }
     }
-
-    fun totalPrice(list: ArrayList<Int>): Int{
-        var total: Int = 0
-        for(e in list){
-            total = total + e
-        }
-        return total
-    }
-
 }

@@ -5,13 +5,14 @@
     android:layout_height="wrap_content"
     android:background="@drawable/list_item_bg"
     >
+
     <ImageView
         android:id="@+id/food_image"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:scaleType="centerCrop"
         android:src="@drawable/sample_image"/>
     <LinearLayout

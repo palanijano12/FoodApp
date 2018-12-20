@@ -13,12 +13,11 @@ import com.foodapp.app.R
 import com.foodapp.app.home.model.FoodListModel
 import com.foodapp.app.home.view.adapter.ViewPagerAdapter
 import com.foodapp.app.home.viewmodel.HomeVM
-import com.foodapp.app.home.webservice.PriceUpdateListener
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 
-class HomeActivity : AppCompatActivity(), PriceUpdateListener{
+class HomeActivity : AppCompatActivity(){
     lateinit var homeVM: HomeVM
     var price: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,18 +43,24 @@ class HomeActivity : AppCompatActivity(), PriceUpdateListener{
             }
         })
         total_amount.text = "AED "+price+" ^"
+        registerReceiver(broadcastPriceReduce, IntentFilter("price_reduce_receiver"))
         registerReceiver(broadcastPriceAdd, IntentFilter("price_receiver"))
-    }
-
-    override fun updatePrice(price: Int) {
-
     }
 
     val broadcastPriceAdd = object : BroadcastReceiver(){
         override fun onReceive(p0: Context?, p1: Intent?) {
             if(p1 != null){
-                price = p1.getIntExtra("price", -1)
-                total_amount.text = "AED "+price+" ^"
+                price += p1.getIntExtra("price", -1)
+                total_amount.text = "AED "+price+"  ^"
+            }
+        }
+
+    }
+    val broadcastPriceReduce = object : BroadcastReceiver(){
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            if(p1 != null){
+                price -= p1.getIntExtra("price", -1)
+                total_amount.text = "AED "+price+"  ^"
             }
         }
 
@@ -64,6 +69,7 @@ class HomeActivity : AppCompatActivity(), PriceUpdateListener{
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(broadcastPriceAdd)
+        unregisterReceiver(broadcastPriceReduce)
     }
 
 }

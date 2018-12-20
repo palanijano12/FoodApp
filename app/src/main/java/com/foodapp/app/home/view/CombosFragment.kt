@@ -12,11 +12,19 @@ import com.foodapp.app.R
 import com.foodapp.app.home.model.FnblistItem
 import com.foodapp.app.home.model.FoodListModel
 import com.foodapp.app.home.view.adapter.FoodListAdapter
+import com.foodapp.app.home.webservice.PriceReduceListener
 import com.foodapp.app.home.webservice.PriceUpdateListener
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_combos.view.*
 
-class CombosFragment : Fragment(), PriceUpdateListener{
+class CombosFragment : Fragment(), PriceUpdateListener, PriceReduceListener{
+
+    override fun updateReducedPrice(price: Int) {
+        val intent = Intent("price_reduce_receiver")
+        intent.putExtra("price", price)
+        activity!!.sendBroadcast(intent)
+    }
+
     override fun updatePrice(price: Int) {
         val intent = Intent("price_receiver")
         intent.putExtra("price", price)
@@ -41,7 +49,7 @@ class CombosFragment : Fragment(), PriceUpdateListener{
             foods = fList.foodList!!.get(position).fnblist!!
             rootView.recycler_view!!.layoutManager = LinearLayoutManager(activity!!.applicationContext)
             rootView.recycler_view!!.addItemDecoration(LinearLayoutSpaceItemDecoration(20))
-            rootView.recycler_view!!.adapter = FoodListAdapter(foods, activity!!.applicationContext, this)
+            rootView.recycler_view!!.adapter = FoodListAdapter(foods, activity!!.applicationContext, this, this)
         }else{
 
         }
