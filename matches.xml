@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/frame_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/latestMatches_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_overlay"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="10dp"
+            android:background="@drawable/bordewithoutbottom"
+            android:padding="@dimen/home_profile_list_layout_padding"
+            android:visibility="gone">
+
+            <com.domaininstance.helpers.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="20dp"
+                android:paddingLeft="@dimen/profile_name_padding_left"
+                android:paddingRight="@dimen/profile_name_padding_right"
+                android:paddingTop="20dp"
+                android:text="@string/nodatafound_desc"
+                android:textColor="@color/black"
+                android:textSize="@dimen/profile_matriid_text_size" />
+        </LinearLayout>
+
+        <com.domaininstance.helpers.pillswitch.SegmentedButtonGroup
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/padd10"
+            android:elevation="@dimen/padd5"
+            android:gravity="center"
+            android:visibility="gone"
+            app:sbg_animateSelectorDuration="0"
+            app:sbg_backgroundColor="@color/white"
+            app:sbg_draggable="true"
+            app:sbg_position="0"
+            app:sbg_radius="30dp"
+            app:sbg_rippleColor="@color/black"
+            app:sbg_selectorColor="@color/colorPrimary">
+
+            <com.domaininstance.helpers.pillswitch.SegmentedButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="@dimen/padd5"
+                android:padding="5dp"
+                app:sb_text="@string/received"
+                app:sb_textColor="@color/black"
+                app:sb_textColor_onSelection="@color/white" />
+
+            <com.domaininstance.helpers.pillswitch.SegmentedButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="@dimen/padd5"
+                android:padding="5dp"
+                app:sb_text="@string/sent"
+                app:sb_textColor="@color/black"
+                app:sb_textColor_onSelection="@color/white" />
+
+        </com.domaininstance.helpers.pillswitch.SegmentedButtonGroup>
+
+            <include layout="@layout/recycler_view" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"/>
+
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/connection_timeout_id"
+        layout="@layout/connection_timeout"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/latestMatches_lstpos_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:visibility="gone">
+
+        <com.domaininstance.helpers.CustomTextView
+            android:id="@+id/listItemPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/counter_bg"
+            android:descendantFocusability="blocksDescendants"
+            android:gravity="right"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text="@string/empty1"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone" />
+
+</FrameLayout>
